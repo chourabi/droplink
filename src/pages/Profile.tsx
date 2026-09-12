@@ -26,8 +26,8 @@ export default function Profile({ driver, deliveries }: ProfileProps) {
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Profile</h1>
-        <p className="text-sm text-muted-foreground">Your account details and plan.</p>
+        <h1 className="text-2xl font-bold tracking-tight">Profil</h1>
+        <p className="text-sm text-muted-foreground">Vos informations de compte et votre forfait.</p>
       </div>
 
       <Card className="border-border/60 shadow-sm">
@@ -38,7 +38,7 @@ export default function Profile({ driver, deliveries }: ProfileProps) {
             </Avatar>
             <div>
               <h2 className="text-xl font-bold">{driver.name}</h2>
-              <p className="text-sm text-muted-foreground">Delivery Driver</p>
+              <p className="text-sm text-muted-foreground">Livreur</p>
             </div>
           </div>
 
@@ -48,7 +48,7 @@ export default function Profile({ driver, deliveries }: ProfileProps) {
                 <User className="h-5 w-5 text-blue-600" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground">Name</p>
+                <p className="text-xs text-muted-foreground">Nom</p>
                 <p className="text-sm font-medium">{driver.name}</p>
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function Profile({ driver, deliveries }: ProfileProps) {
                 <Phone className="h-5 w-5 text-green-600" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground">Phone</p>
+                <p className="text-xs text-muted-foreground">Téléphone</p>
                 <p className="text-sm font-medium">{driver.phone}</p>
               </div>
             </div>
@@ -79,16 +79,16 @@ export default function Profile({ driver, deliveries }: ProfileProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Crown className="h-5 w-5 text-amber-500" />
-              <h2 className="text-lg font-semibold">Plan</h2>
+              <h2 className="text-lg font-semibold">Forfait</h2>
             </div>
-            <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium capitalize">{driver.plan}</span>
+            <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium">{driver.plan === 'free' ? 'Gratuit' : 'Pro'}</span>
           </div>
 
           <div className="mt-4">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-muted-foreground">Usage this month</span>
+              <span className="text-muted-foreground">Utilisation ce mois-ci</span>
               <span className="font-medium">
-                {thisMonth} / {limit === Infinity ? '∞' : limit} deliveries
+                {thisMonth} / {limit === Infinity ? '∞' : limit} livraisons
               </span>
             </div>
             <Progress value={usagePct} className="mt-2" />
@@ -98,17 +98,17 @@ export default function Profile({ driver, deliveries }: ProfileProps) {
             <div className="mt-6 rounded-xl border border-primary/20 bg-primary/5 p-4">
               <div className="flex items-center gap-2">
                 <Package className="h-4 w-4 text-primary" />
-                <p className="text-sm font-medium text-primary">Upgrade to Pro</p>
+                <p className="text-sm font-medium text-primary">Passer à Pro</p>
               </div>
               <p className="mt-1 text-xs text-muted-foreground">
-                Unlimited deliveries, delivery history, statistics, and priority support.
+                Livraisons illimitées, historique des livraisons, statistiques et support prioritaire.
               </p>
               <Button
-                onClick={() => toast.info('Payment integration coming soon! This is a prototype.')}
+                onClick={() => toast.info('Le paiement arrive bientôt ! Ceci est un prototype.')}
                 className="mt-4 w-full gap-2"
               >
                 <Crown className="h-4 w-4" />
-                Upgrade to Pro — $9/month
+                Passer à Pro — 9€/mois
               </Button>
             </div>
           )}

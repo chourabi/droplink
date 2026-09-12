@@ -24,14 +24,14 @@ export default function Auth({ mode, onLogin }: AuthProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password || (isSignup && (!name || !phone))) {
-      toast.error('Please fill in all required fields');
+      toast.error('Veuillez remplir tous les champs requis');
       return;
     }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       onLogin();
-      toast.success(isSignup ? 'Account created!' : 'Welcome back!');
+      toast.success(isSignup ? 'Compte créé !' : 'Bon retour !');
       navigate('/dashboard');
     }, 800);
   };
@@ -48,7 +48,7 @@ export default function Auth({ mode, onLogin }: AuthProps) {
         <Link to="/">
           <Button variant="ghost" size="sm" className="gap-1.5">
             <ArrowLeft className="h-4 w-4" />
-            Home
+            Accueil
           </Button>
         </Link>
       </div>
@@ -57,24 +57,24 @@ export default function Auth({ mode, onLogin }: AuthProps) {
         <Card className="w-full max-w-md border-border/60 shadow-lg">
           <CardContent className="p-8">
             <h1 className="text-2xl font-bold tracking-tight">
-              {isSignup ? 'Create your account' : 'Welcome back'}
+              {isSignup ? 'Créez votre compte' : 'Bon retour'}
             </h1>
             <p className="mt-1.5 text-sm text-muted-foreground">
               {isSignup
-                ? 'Start sharing location links with your customers.'
-                : 'Log in to your DropLink driver account.'}
+                ? 'Commencez à partager des liens de position avec vos clients.'
+                : 'Connectez-vous à votre compte livreur DropLink.'}
             </p>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               {isSignup && (
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} />
+                  <Label htmlFor="name">Nom</Label>
+                  <Input id="name" placeholder="Votre nom" value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
               )}
               {isSignup && (
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone</Label>
+                  <Label htmlFor="phone">Téléphone</Label>
                   <Input id="phone" placeholder="+216 22 123 456" value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </div>
               )}
@@ -83,24 +83,24 @@ export default function Auth({ mode, onLogin }: AuthProps) {
                 <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Mot de passe</Label>
                 <Input id="password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Please wait...' : isSignup ? 'Create account' : 'Log in'}
+                {loading ? 'Veuillez patienter...' : isSignup ? 'Créer le compte' : 'Se connecter'}
               </Button>
             </form>
 
             <p className="mt-6 text-center text-sm text-muted-foreground">
               {isSignup ? (
                 <>
-                  Already have an account?{' '}
-                  <Link to="/login" className="font-medium text-primary hover:underline">Log in</Link>
+                  Vous avez déjà un compte ?{' '}
+                  <Link to="/login" className="font-medium text-primary hover:underline">Se connecter</Link>
                 </>
               ) : (
                 <>
-                  Don't have an account?{' '}
-                  <Link to="/signup" className="font-medium text-primary hover:underline">Sign up</Link>
+                  Vous n'avez pas de compte ?{' '}
+                  <Link to="/signup" className="font-medium text-primary hover:underline">S'inscrire</Link>
                 </>
               )}
             </p>

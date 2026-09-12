@@ -80,7 +80,7 @@ export default function MapView({
 
     if (singlePoint) {
       const marker = L.marker([singlePoint.lat, singlePoint.lng], { icon: singleIcon }).addTo(map);
-      marker.bindPopup('Your location').openPopup();
+      marker.bindPopup('Votre position').openPopup();
       map.setView([singlePoint.lat, singlePoint.lng], 15);
       return;
     }
@@ -90,14 +90,14 @@ export default function MapView({
 
     if (driverLat && driverLng) {
       const m = L.marker([driverLat, driverLng], { icon: driverIcon }).addTo(map);
-      m.bindPopup('You (driver)');
+      m.bindPopup('Vous (livreur)');
       markers.push(m);
       points.push([driverLat, driverLng]);
     }
 
     if (customerLat && customerLng) {
       const m = L.marker([customerLat, customerLng], { icon: customerIcon }).addTo(map);
-      m.bindPopup('Customer').openPopup();
+      m.bindPopup('Client').openPopup();
       markers.push(m);
       points.push([customerLat, customerLng]);
     }

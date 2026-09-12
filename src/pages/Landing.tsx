@@ -18,10 +18,10 @@ export default function Landing() {
           </div>
           <div className="flex items-center gap-2">
             <Link to="/login">
-              <Button variant="ghost" size="sm">Log in</Button>
+              <Button variant="ghost" size="sm">Se connecter</Button>
             </Link>
             <Link to="/signup">
-              <Button size="sm">Get started</Button>
+              <Button size="sm">Commencer</Button>
             </Link>
           </div>
         </div>
@@ -33,24 +33,24 @@ export default function Landing() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
               <Zap className="h-3.5 w-3.5" />
-              No app needed for customers — just a link
+              Pas d'app pour le client — juste un lien
             </div>
             <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-6xl">
-              Stop calling customers for directions.
+              Arrêtez d'appeler vos clients pour l'itinéraire.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              Send one link. Your customer shares their exact location. You navigate straight there.
+              Envoyez un lien. Votre client partage sa position exacte. Vous y allez directement.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link to="/signup">
                 <Button size="lg" className="w-full gap-2 sm:w-auto">
-                  Get started
+                  Commencer
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <a href="#how-it-works">
                 <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                  See how it works
+                  Voir comment ça marche
                 </Button>
               </a>
             </div>
@@ -59,10 +59,10 @@ export default function Landing() {
           <div className="mx-auto mt-16 max-w-4xl">
             <div className="flex flex-col items-center gap-3 md:flex-row md:justify-center">
               {[
-                { icon: Package, label: 'Create delivery', color: 'bg-blue-100 text-blue-600' },
-                { icon: Link2, label: 'Send link', color: 'bg-indigo-100 text-indigo-600' },
-                { icon: Share2, label: 'Customer shares location', color: 'bg-green-100 text-green-600' },
-                { icon: Navigation, label: 'Open in Maps', color: 'bg-orange-100 text-orange-600' },
+                { icon: Package, label: 'Créer une livraison', color: 'bg-blue-100 text-blue-600' },
+                { icon: Link2, label: 'Envoyer le lien', color: 'bg-indigo-100 text-indigo-600' },
+                { icon: Share2, label: 'Le client partage sa position', color: 'bg-green-100 text-green-600' },
+                { icon: Navigation, label: 'Ouvrir dans Maps', color: 'bg-orange-100 text-orange-600' },
               ].map((step, i) => (
                 <div key={i} className="flex items-center gap-3 md:flex-col">
                   <div className="flex items-center gap-3 rounded-2xl border border-border bg-white px-5 py-4 shadow-sm">
@@ -82,14 +82,14 @@ export default function Landing() {
       <section id="how-it-works" className="mx-auto max-w-6xl px-4 py-16">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Built for delivery drivers</h2>
-          <p className="mt-3 text-muted-foreground">Everything you need to find your customers faster.</p>
+          <p className="mt-3 text-muted-foreground">Tout ce qu'il faut pour trouver vos clients plus rapidement.</p>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { icon: MapPin, title: 'Exact location', desc: 'No more guessing where customers are.', color: 'bg-blue-50 text-blue-600' },
-            { icon: Zap, title: 'One-tap sharing', desc: "Customer doesn't need an account or app.", color: 'bg-green-50 text-green-600' },
-            { icon: Navigation, title: 'Open in Maps', desc: 'Navigate directly to the customer.', color: 'bg-orange-50 text-orange-600' },
-            { icon: Package, title: 'Delivery history', desc: 'Keep track of your deliveries.', color: 'bg-indigo-50 text-indigo-600' },
+            { icon: MapPin, title: 'Position exacte', desc: 'Fini de deviner où se trouvent les clients.', color: 'bg-blue-50 text-blue-600' },
+            { icon: Zap, title: 'Partage en un tap', desc: "Le client n'a pas besoin de compte ni d'app.", color: 'bg-green-50 text-green-600' },
+            { icon: Navigation, title: 'Ouvrir dans Maps', desc: 'Naviguez directement vers le client.', color: 'bg-orange-50 text-orange-600' },
+            { icon: Package, title: 'Historique des livraisons', desc: 'Gardez le suivi de vos livraisons.', color: 'bg-indigo-50 text-indigo-600' },
           ].map((card, i) => (
             <Card key={i} className="border-border/60 shadow-sm transition-shadow hover:shadow-md">
               <CardContent className="p-6">
@@ -106,20 +106,20 @@ export default function Landing() {
 
       <section className="mx-auto max-w-6xl px-4 py-16">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Simple, transparent pricing</h2>
-          <p className="mt-3 text-muted-foreground">Start free. Upgrade when you need more.</p>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Tarifs simples et transparents</h2>
+          <p className="mt-3 text-muted-foreground">Commencez gratuitement. Changez de forfait quand vous voulez.</p>
         </div>
         <div className="mx-auto mt-12 grid max-w-3xl gap-6 md:grid-cols-2">
           <Card className="border-border/60 shadow-sm">
             <CardContent className="p-8">
-              <h3 className="text-xl font-bold">Free</h3>
-              <p className="mt-1 text-sm text-muted-foreground">For occasional deliveries.</p>
+              <h3 className="text-xl font-bold">Gratuit</h3>
+              <p className="mt-1 text-sm text-muted-foreground">Pour les livraisons occasionnelles.</p>
               <div className="mt-6">
-                <span className="text-4xl font-extrabold">$0</span>
-                <span className="text-muted-foreground">/month</span>
+                <span className="text-4xl font-extrabold">0€</span>
+                <span className="text-muted-foreground">/mois</span>
               </div>
               <ul className="mt-6 space-y-3 text-sm">
-                {['5 deliveries per month', 'Location sharing', 'Open in Google Maps'].map((f) => (
+                {['5 livraisons par mois', 'Partage de position', 'Ouvrir dans Google Maps'].map((f) => (
                   <li key={f} className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-green-500" />
                     {f}
@@ -127,7 +127,7 @@ export default function Landing() {
                 ))}
               </ul>
               <Link to="/signup" className="mt-8 block">
-                <Button variant="outline" className="w-full">Get started</Button>
+                <Button variant="outline" className="w-full">Commencer</Button>
               </Link>
             </CardContent>
           </Card>
@@ -135,15 +135,15 @@ export default function Landing() {
             <CardContent className="p-8">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-bold">Pro</h3>
-                <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-medium text-primary-foreground">Popular</span>
+                <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-medium text-primary-foreground">Populaire</span>
               </div>
-              <p className="mt-1 text-sm text-muted-foreground">For active drivers.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Pour les livreurs actifs.</p>
               <div className="mt-6">
-                <span className="text-4xl font-extrabold">$9</span>
-                <span className="text-muted-foreground">/month</span>
+                <span className="text-4xl font-extrabold">9€</span>
+                <span className="text-muted-foreground">/mois</span>
               </div>
               <ul className="mt-6 space-y-3 text-sm">
-                {['Unlimited deliveries', 'Delivery history', 'Statistics', 'Priority support'].map((f) => (
+                {['Livraisons illimitées', 'Historique des livraisons', 'Statistiques', 'Support prioritaire'].map((f) => (
                   <li key={f} className="flex items-center gap-2">
                     <Check className="h-4 w-4 text-green-500" />
                     {f}
@@ -151,7 +151,7 @@ export default function Landing() {
                 ))}
               </ul>
               <Link to="/signup" className="mt-8 block">
-                <Button className="w-full">Start free trial</Button>
+                <Button className="w-full">Essai gratuit</Button>
               </Link>
             </CardContent>
           </Card>
@@ -161,13 +161,13 @@ export default function Landing() {
       <section className="mx-auto max-w-4xl px-4 py-16 text-center">
         <div className="rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-600 px-8 py-16 text-white">
           <Smartphone className="mx-auto h-12 w-12 opacity-80" />
-          <h2 className="mt-6 text-3xl font-bold">No phone calls. No directions. Just send a link.</h2>
+          <h2 className="mt-6 text-3xl font-bold">Plus d'appels. Plus d'itinéraires. Envoyez juste un lien.</h2>
           <p className="mx-auto mt-3 max-w-xl text-blue-100">
-            Join delivery drivers who save time on every delivery.
+            Rejoignez les livreurs qui gagnent du temps à chaque livraison.
           </p>
           <Link to="/signup" className="mt-8 inline-block">
             <Button size="lg" variant="secondary" className="gap-2">
-              Get started — it's free
+              Commencer — c'est gratuit
               <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
@@ -182,7 +182,7 @@ export default function Landing() {
             </div>
             <span className="font-bold">DropLink</span>
           </div>
-          <p className="text-sm text-muted-foreground">© 2026 DropLink. Built for delivery drivers.</p>
+          <p className="text-sm text-muted-foreground">© 2026 DropLink. Conçu pour les livreurs.</p>
         </div>
       </footer>
     </div>

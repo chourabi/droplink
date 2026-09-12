@@ -25,9 +25,9 @@ export default function Dashboard({ deliveries }: DashboardProps) {
     .reduce((sum, d) => sum + (d.distance || 0), 0);
 
   const stats = [
-    { label: "Today's deliveries", value: today.length, icon: Package, color: 'bg-blue-50 text-blue-600' },
-    { label: 'Pending locations', value: pending.length, icon: Clock, color: 'bg-amber-50 text-amber-600' },
-    { label: 'Completed', value: completed.length, icon: CheckCircle, color: 'bg-green-50 text-green-600' },
+    { label: 'Livraisons du jour', value: today.length, icon: Package, color: 'bg-blue-50 text-blue-600' },
+    { label: 'Positions en attente', value: pending.length, icon: Clock, color: 'bg-amber-50 text-amber-600' },
+    { label: 'Terminées', value: completed.length, icon: CheckCircle, color: 'bg-green-50 text-green-600' },
     { label: 'Distance', value: `${totalDistance.toFixed(1)} km`, icon: TrendingUp, color: 'bg-indigo-50 text-indigo-600' },
   ];
 
@@ -37,12 +37,12 @@ export default function Dashboard({ deliveries }: DashboardProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-          <p className="text-sm text-muted-foreground">Welcome back. Here's your delivery overview.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Tableau de bord</h1>
+          <p className="text-sm text-muted-foreground">Bon retour. Voici votre aperçu des livraisons.</p>
         </div>
         <Button onClick={() => navigate('/create-delivery')} className="gap-1.5">
           <Plus className="h-4 w-4" />
-          New Delivery
+          Nouvelle livraison
         </Button>
       </div>
 
@@ -62,10 +62,10 @@ export default function Dashboard({ deliveries }: DashboardProps) {
 
       <div>
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Recent deliveries</h2>
+          <h2 className="text-lg font-semibold">Livraisons récentes</h2>
           <Link to="/deliveries">
             <Button variant="ghost" size="sm" className="gap-1">
-              View all
+              Voir tout
               <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
@@ -75,11 +75,11 @@ export default function Dashboard({ deliveries }: DashboardProps) {
           <Card className="border-dashed border-border/60">
             <CardContent className="flex flex-col items-center justify-center py-12 text-center">
               <Package className="h-10 w-10 text-muted-foreground/40" />
-              <p className="mt-3 text-sm font-medium">No deliveries yet</p>
-              <p className="text-xs text-muted-foreground">Create your first delivery to get started.</p>
+              <p className="mt-3 text-sm font-medium">Aucune livraison pour le moment</p>
+              <p className="text-xs text-muted-foreground">Créez votre première livraison pour commencer.</p>
               <Button onClick={() => navigate('/create-delivery')} className="mt-4 gap-1.5" size="sm">
                 <Plus className="h-4 w-4" />
-                New Delivery
+                Nouvelle livraison
               </Button>
             </CardContent>
           </Card>
@@ -99,7 +99,7 @@ export default function Dashboard({ deliveries }: DashboardProps) {
                     <div>
                       <p className="font-semibold">{delivery.customerName}</p>
                       <p className="text-xs text-muted-foreground">
-                        #{delivery.id} · {new Date(delivery.createdAt).toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' })}
+                        #{delivery.id} · {new Date(delivery.createdAt).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' })}
                       </p>
                     </div>
                   </div>
@@ -110,7 +110,7 @@ export default function Dashboard({ deliveries }: DashboardProps) {
                         <p className="mt-1 text-xs text-muted-foreground">{delivery.distance} km</p>
                       )}
                     </div>
-                    <Button variant="outline" size="sm">Open</Button>
+                    <Button variant="outline" size="sm">Ouvrir</Button>
                   </div>
                 </CardContent>
               </Card>

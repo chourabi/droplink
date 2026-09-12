@@ -25,9 +25,9 @@ export default function DeliveryDetail({ deliveries, onMarkDelivered, onLinkSent
     return (
       <div className="mx-auto max-w-lg py-20 text-center">
         <Package className="mx-auto h-12 w-12 text-muted-foreground/40" />
-        <h1 className="mt-4 text-xl font-bold">Delivery not found</h1>
-        <p className="mt-1 text-sm text-muted-foreground">This delivery may have been deleted.</p>
-        <Button onClick={() => navigate('/deliveries')} className="mt-6">Back to deliveries</Button>
+        <h1 className="mt-4 text-xl font-bold">Livraison introuvable</h1>
+        <p className="mt-1 text-sm text-muted-foreground">Cette livraison a peut-être été supprimée.</p>
+        <Button onClick={() => navigate('/deliveries')} className="mt-6">Retour aux livraisons</Button>
       </div>
     );
   }
@@ -39,27 +39,27 @@ export default function DeliveryDetail({ deliveries, onMarkDelivered, onLinkSent
     if (!hasLocation) return;
     const url = `https://www.google.com/maps/dir/?api=1&destination=${delivery.customerLatitude},${delivery.customerLongitude}&origin=${DRIVER_LOCATION.lat},${DRIVER_LOCATION.lng}`;
     window.open(url, '_blank');
-    toast.success('Opening Google Maps...');
+    toast.success('Ouverture de Google Maps...');
   };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(delivery.shareUrl);
-    toast.success('Link copied');
+    toast.success('Lien copié');
   };
 
   const handleWhatsApp = () => {
     const msg = encodeURIComponent(WHATSAPP_MESSAGE(delivery.shareUrl, delivery.customerName));
     window.open(`https://wa.me/?text=${msg}`, '_blank');
     onLinkSent(delivery.id);
-    toast.success('WhatsApp opened');
+    toast.success('WhatsApp ouvert');
   };
 
   const timeline = [
-    { time: new Date(delivery.createdAt).toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' }), label: 'Delivery created' },
-    delivery.linkSentAt && { time: new Date(delivery.linkSentAt).toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' }), label: 'Link sent' },
-    delivery.customerOpenedAt && { time: new Date(delivery.customerOpenedAt).toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' }), label: 'Customer opened link' },
-    delivery.locationReceivedAt && { time: new Date(delivery.locationReceivedAt).toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' }), label: 'Location received' },
-    delivery.completedAt && { time: new Date(delivery.completedAt).toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' }), label: 'Marked as delivered' },
+    { time: new Date(delivery.createdAt).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' }), label: 'Livraison créée' },
+    delivery.linkSentAt && { time: new Date(delivery.linkSentAt).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' }), label: 'Lien envoyé' },
+    delivery.customerOpenedAt && { time: new Date(delivery.customerOpenedAt).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' }), label: 'Client a ouvert le lien' },
+    delivery.locationReceivedAt && { time: new Date(delivery.locationReceivedAt).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' }), label: 'Position reçue' },
+    delivery.completedAt && { time: new Date(delivery.completedAt).toLocaleTimeString('fr', { hour: '2-digit', minute: '2-digit' }), label: 'Marquée comme livrée' },
   ].filter(Boolean) as { time: string; label: string }[];
 
   const estTime = delivery.distance ? Math.ceil((delivery.distance / 30) * 60) : null;
@@ -91,16 +91,16 @@ export default function DeliveryDetail({ deliveries, onMarkDelivered, onLinkSent
               ) : (
                 <div className="flex h-full flex-col items-center justify-center bg-muted/30 text-center">
                   <MapPin className="h-10 w-10 text-muted-foreground/40" />
-                  <p className="mt-3 text-sm font-medium">Waiting for customer location</p>
-                  <p className="text-xs text-muted-foreground">The map will appear once the customer shares their location.</p>
+                  <p className="mt-3 text-sm font-medium">En attente de la position du client</p>
+                  <p className="text-xs text-muted-foreground">La carte apparaîtra dès que le client partagera sa position.</p>
                   <div className="mt-4 flex gap-2">
                     <Button variant="outline" size="sm" onClick={handleCopy} className="gap-1.5">
                       <Copy className="h-3.5 w-3.5" />
-                      Copy link
+                      Copier le lien
                     </Button>
                     <Button size="sm" onClick={handleWhatsApp} className="gap-1.5 bg-[#25D366] text-white hover:bg-[#1da851]">
                       <MessageCircle className="h-3.5 w-3.5" />
-                      Send via WhatsApp
+                      Envoyer par WhatsApp
                     </Button>
                   </div>
                 </div>
@@ -112,30 +112,30 @@ export default function DeliveryDetail({ deliveries, onMarkDelivered, onLinkSent
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button onClick={openInMaps} className="flex-1 gap-2">
                 <Navigation className="h-4 w-4" />
-                Open in Google Maps
+                Ouvrir dans Google Maps
               </Button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="outline" className="flex-1 gap-2">
                     <Check className="h-4 w-4" />
-                    Mark as delivered
+                    Marquer comme livrée
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Mark as delivered?</AlertDialogTitle>
-                    <AlertDialogDescription>This will mark the delivery for {delivery.customerName} as completed.</AlertDialogDescription>
+                    <AlertDialogTitle>Marquer comme livrée ?</AlertDialogTitle>
+                    <AlertDialogDescription>Ceci marquera la livraison pour {delivery.customerName} comme terminée.</AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel>Annuler</AlertDialogCancel>
                     <AlertDialogAction
                       onClick={() => {
                         onMarkDelivered(delivery.id);
-                        toast.success('Delivery completed');
+                        toast.success('Livraison terminée');
                         navigate('/deliveries');
                       }}
                     >
-                      Mark delivered
+                      Marquer livrée
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
@@ -147,7 +147,7 @@ export default function DeliveryDetail({ deliveries, onMarkDelivered, onLinkSent
             <Card className="border-green-200 bg-green-50">
               <CardContent className="flex items-center gap-3 p-4">
                 <Check className="h-5 w-5 text-green-500" />
-                <p className="text-sm font-medium text-green-700">This delivery has been completed.</p>
+                <p className="text-sm font-medium text-green-700">Cette livraison a été terminée.</p>
               </CardContent>
             </Card>
           )}
@@ -156,29 +156,29 @@ export default function DeliveryDetail({ deliveries, onMarkDelivered, onLinkSent
         <div className="space-y-6">
           <Card className="border-border/60 shadow-sm">
             <CardContent className="space-y-4 p-5">
-              <h3 className="text-sm font-semibold text-muted-foreground">Delivery info</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground">Infos livraison</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-2">
                   <Package className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">Reference:</span>
+                  <span className="text-muted-foreground">Référence :</span>
                   <span className="font-medium">{delivery.reference}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">Created:</span>
-                  <span className="font-medium">{new Date(delivery.createdAt).toLocaleString('en', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span>
+                  <span className="text-muted-foreground">Créée :</span>
+                  <span className="font-medium">{new Date(delivery.createdAt).toLocaleString('fr', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
                 {delivery.amount != null && (
                   <div className="flex items-center gap-2">
                     <DollarSign className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Amount:</span>
+                    <span className="text-muted-foreground">Montant :</span>
                     <span className="font-medium">{delivery.amount} TND</span>
                   </div>
                 )}
                 {delivery.notes && (
                   <div className="flex items-start gap-2">
                     <FileText className="mt-0.5 h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Notes:</span>
+                    <span className="text-muted-foreground">Notes :</span>
                     <span className="font-medium">{delivery.notes}</span>
                   </div>
                 )}
@@ -187,17 +187,17 @@ export default function DeliveryDetail({ deliveries, onMarkDelivered, onLinkSent
               {hasLocation && (
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2">
-                    <span className="text-muted-foreground">Distance:</span>
+                    <span className="text-muted-foreground">Distance :</span>
                     <span className="font-medium">{delivery.distance} km</span>
                   </div>
                   {estTime && (
                     <div className="flex items-center gap-2">
-                      <span className="text-muted-foreground">Est. travel time:</span>
+                      <span className="text-muted-foreground">Temps estimé :</span>
                       <span className="font-medium">~{estTime} min</span>
                     </div>
                   )}
                   <div className="flex items-center gap-2">
-                    <span className="text-muted-foreground">Coordinates:</span>
+                    <span className="text-muted-foreground">Coordonnées :</span>
                     <span className="font-mono text-xs">{delivery.customerLatitude?.toFixed(5)}, {delivery.customerLongitude?.toFixed(5)}</span>
                   </div>
                 </div>
@@ -207,7 +207,7 @@ export default function DeliveryDetail({ deliveries, onMarkDelivered, onLinkSent
 
           <Card className="border-border/60 shadow-sm">
             <CardContent className="p-5">
-              <h3 className="mb-4 text-sm font-semibold text-muted-foreground">Timeline</h3>
+              <h3 className="mb-4 text-sm font-semibold text-muted-foreground">Historique</h3>
               <div className="space-y-4">
                 {timeline.map((event, i) => (
                   <div key={i} className="flex gap-3">

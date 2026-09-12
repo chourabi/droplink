@@ -13,9 +13,9 @@ export default function Layout({ children, onLogout }: LayoutProps) {
   const navigate = useNavigate();
 
   const navItems = [
-    { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/deliveries', label: 'Deliveries', icon: Package },
-    { to: '/profile', label: 'Profile', icon: User },
+    { to: '/dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
+    { to: '/deliveries', label: 'Livraisons', icon: Package },
+    { to: '/profile', label: 'Profil', icon: User },
   ];
 
   const handleLogout = () => {
@@ -54,7 +54,7 @@ export default function Layout({ children, onLogout }: LayoutProps) {
           <div className="flex items-center gap-2">
             <Button size="sm" onClick={() => navigate('/create-delivery')} className="gap-1.5">
               <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">New Delivery</span>
+              <span className="hidden sm:inline">Nouvelle livraison</span>
             </Button>
             <Button variant="ghost" size="icon" onClick={handleLogout} className="hidden md:flex">
               <LogOut className="h-4 w-4" />

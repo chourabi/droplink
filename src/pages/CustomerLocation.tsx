@@ -31,8 +31,8 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
         <Card className="max-w-md border-border/60 shadow-lg">
           <CardContent className="p-8 text-center">
             <Truck className="mx-auto h-12 w-12 text-muted-foreground/40" />
-            <h1 className="mt-4 text-xl font-bold">Delivery not found</h1>
-            <p className="mt-1 text-sm text-muted-foreground">This delivery link may be invalid or expired.</p>
+            <h1 className="mt-4 text-xl font-bold">Livraison introuvable</h1>
+            <p className="mt-1 text-sm text-muted-foreground">Ce lien de livraison est peut-être invalide ou expiré.</p>
           </CardContent>
         </Card>
       </div>
@@ -50,7 +50,7 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
           setLocation({ lat: latitude, lng: longitude });
           onShareLocation(delivery.id, latitude, longitude);
           setState('success');
-          toast.success('Location shared!');
+          toast.success('Position partagée !');
         },
         () => {
           setState('error');
@@ -70,7 +70,7 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
       setLocation({ lat, lng });
       onShareLocation(delivery.id, lat, lng);
       setState('success');
-      toast.success('Location shared!');
+      toast.success('Position partagée !');
     }, 800);
   };
 
@@ -83,8 +83,8 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-50 animate-slide-up">
               <Check className="h-8 w-8 text-green-500" />
             </div>
-            <h1 className="text-2xl font-bold tracking-tight">Location shared!</h1>
-            <p className="mt-2 text-sm text-muted-foreground">Your driver now has your exact location.</p>
+            <h1 className="text-2xl font-bold tracking-tight">Position partagée !</h1>
+            <p className="mt-2 text-sm text-muted-foreground">Votre livreur a maintenant votre position exacte.</p>
           </div>
 
           <Card className="mt-6 overflow-hidden border-border/60 shadow-sm">
@@ -95,11 +95,11 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
 
           <div className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-green-200 bg-green-50 px-4 py-3">
             <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm font-medium text-green-700">Location received by your driver</span>
+            <span className="text-sm font-medium text-green-700">Position reçue par votre livreur</span>
           </div>
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            You can close this page now.
+            Vous pouvez fermer cette page maintenant.
           </p>
         </div>
       </div>
@@ -120,23 +120,23 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50">
             <Truck className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">Your delivery is on the way</h1>
-          <p className="mt-2 text-sm text-muted-foreground">Help your driver find you by sharing your location.</p>
+          <h1 className="text-2xl font-bold tracking-tight">Votre livraison est en route</h1>
+          <p className="mt-2 text-sm text-muted-foreground">Aidez votre livreur à vous trouver en partageant votre position.</p>
         </div>
 
         <Card className="mt-6 border-border/60 bg-white/80 shadow-sm">
           <CardContent className="space-y-3 p-5">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Delivery from:</span>
-              <span className="text-sm font-medium">DropLink Driver</span>
+              <span className="text-sm text-muted-foreground">Livreur :</span>
+              <span className="text-sm font-medium">Livreur DropLink</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Order:</span>
+              <span className="text-sm text-muted-foreground">Commande :</span>
               <span className="text-sm font-medium">#{delivery.id}</span>
             </div>
             {delivery.reference && (
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Reference:</span>
+                <span className="text-sm text-muted-foreground">Référence :</span>
                 <span className="text-sm font-medium">{delivery.reference}</span>
               </div>
             )}
@@ -153,12 +153,12 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
             {state === 'loading' ? (
               <>
                 <Loader2 className="h-6 w-6 animate-spin" />
-                Getting your location...
+                Récupération de votre position...
               </>
             ) : (
               <>
                 <MapPin className="h-6 w-6" />
-                Share my location
+                Partager ma position
               </>
             )}
           </Button>
@@ -168,13 +168,13 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
           <div className="mt-4 animate-fade-in">
             <Card className="border-amber-200 bg-amber-50">
               <CardContent className="p-5">
-                <p className="text-sm font-medium text-amber-700">Location access unavailable</p>
+                <p className="text-sm font-medium text-amber-700">Accès à la position indisponible</p>
                 <p className="mt-1 text-xs text-amber-600">
-                  We couldn't access your GPS. You can simulate your location instead.
+                  Nous n'avons pas pu accéder à votre GPS. Vous pouvez simuler votre position à la place.
                 </p>
                 <Button onClick={handleSimulate} variant="outline" className="mt-3 w-full gap-2 border-amber-300 text-amber-700 hover:bg-amber-100">
                   <Navigation className="h-4 w-4" />
-                  Simulate my location
+                  Simuler ma position
                 </Button>
               </CardContent>
             </Card>
@@ -184,13 +184,13 @@ export default function CustomerLocation({ deliveries, onShareLocation, onCustom
         <div className="mt-6 flex items-start gap-2 rounded-xl border border-border/60 bg-muted/30 px-4 py-3">
           <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
           <p className="text-xs text-muted-foreground">
-            We only use your location to help the delivery driver find you. Your location is not stored or shared with anyone else.
+            Nous utilisons votre position uniquement pour aider le livreur à vous trouver. Votre position n'est ni stockée ni partagée avec qui que ce soit d'autre.
           </p>
         </div>
 
         <div className="mt-6 text-center">
           <Button onClick={handleSimulate} variant="ghost" size="sm" className="text-xs text-muted-foreground">
-            Demo: Simulate customer location
+            Démo : Simuler la position du client
           </Button>
         </div>
       </div>

@@ -8,7 +8,7 @@ export const STORAGE_KEYS = {
 };
 
 export const WHATSAPP_MESSAGE = (link: string, customerName: string) =>
-  `🚚 Your delivery is on the way.\n\nHi ${customerName}, please open this link and share your location with your driver:\n${link}`;
+  `🚚 Votre livraison est en route.\n\nBonjour ${customerName}, veuillez ouvrir ce lien et partager votre position avec votre livreur :\n${link}`;
 
 export const PLAN_LIMITS = {
   free: 5,

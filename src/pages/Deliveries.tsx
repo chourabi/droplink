@@ -25,16 +25,16 @@ export default function Deliveries({ deliveries }: DeliveriesProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Deliveries</h1>
-        <p className="text-sm text-muted-foreground">All your deliveries in one place.</p>
+        <h1 className="text-2xl font-bold tracking-tight">Livraisons</h1>
+        <p className="text-sm text-muted-foreground">Toutes vos livraisons au même endroit.</p>
       </div>
 
       <Tabs value={filter} onValueChange={(v) => setFilter(v as Filter)}>
         <TabsList className="w-full justify-start overflow-x-auto sm:w-auto">
-          <TabsTrigger value="all">All</TabsTrigger>
-          <TabsTrigger value="waiting_location">Waiting</TabsTrigger>
-          <TabsTrigger value="location_received">Received</TabsTrigger>
-          <TabsTrigger value="delivered">Delivered</TabsTrigger>
+          <TabsTrigger value="all">Toutes</TabsTrigger>
+          <TabsTrigger value="waiting_location">En attente</TabsTrigger>
+          <TabsTrigger value="location_received">Reçues</TabsTrigger>
+          <TabsTrigger value="delivered">Livraisons</TabsTrigger>
         </TabsList>
       </Tabs>
 
@@ -42,9 +42,9 @@ export default function Deliveries({ deliveries }: DeliveriesProps) {
         <Card className="border-dashed border-border/60">
           <CardContent className="flex flex-col items-center justify-center py-12 text-center">
             <Package className="h-10 w-10 text-muted-foreground/40" />
-            <p className="mt-3 text-sm font-medium">No deliveries found</p>
-            <p className="text-xs text-muted-foreground">Try a different filter or create a new delivery.</p>
-            <Button onClick={() => navigate('/create-delivery')} className="mt-4" size="sm">New Delivery</Button>
+            <p className="mt-3 text-sm font-medium">Aucune livraison trouvée</p>
+            <p className="text-xs text-muted-foreground">Essayez un autre filtre ou créez une nouvelle livraison.</p>
+            <Button onClick={() => navigate('/create-delivery')} className="mt-4" size="sm">Nouvelle livraison</Button>
           </CardContent>
         </Card>
       ) : (
@@ -63,7 +63,7 @@ export default function Deliveries({ deliveries }: DeliveriesProps) {
                   <div>
                     <p className="font-semibold">{delivery.customerName}</p>
                     <p className="text-xs text-muted-foreground">
-                      #{delivery.id} · {new Date(delivery.createdAt).toLocaleString('en', {
+                      #{delivery.id} · {new Date(delivery.createdAt).toLocaleString('fr', {
                         day: 'numeric',
                         month: 'short',
                         hour: '2-digit',
